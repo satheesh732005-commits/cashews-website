@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS products (
   KEY idx_products_grade (grade),
   KEY idx_products_active_category (is_active, category),
   UNIQUE KEY uq_products_name (name),
-  CONSTRAINT chk_products_prices CHECK (price_250 >= 0 AND price_ >= 950 AND price_1kg >= 0)
+  CONSTRAINT chk_products_prices CHECK (price_250 >= 0 AND price_500 >= 0 AND price_1kg >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS orders (

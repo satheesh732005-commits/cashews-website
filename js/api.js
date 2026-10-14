@@ -1,6 +1,6 @@
 "use strict";
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "http://127.0.0.1:5000/api";
 const TOKEN_KEY = "sc_token";
 const USER_KEY = "sc_user";
 
@@ -38,7 +38,8 @@ async function request(path, options = {}) {
     response = await fetch(`${API_BASE_URL}${path}`, { ...options, headers });
   } catch (error) {
     if (error instanceof TypeError) {
-      throw new Error("Can't reach the Santhi Cashew server. Check that the Flask API is running at localhost:5000.");
+      console.error("Santhi Cashew API network request failed:", error);
+      throw new Error(`Can't reach the Santhi Cashew server at ${API_BASE_URL}. Check that Flask is running and the frontend origin is allowed by CORS.`, { cause: error });
     }
     throw error;
   }

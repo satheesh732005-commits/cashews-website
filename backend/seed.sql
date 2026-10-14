@@ -6,7 +6,7 @@ INSERT INTO products
 VALUES
   ('Whole Cashew W320', 'Raw', 'W320',
    'Classic creamy whole kernels, ideal for everyday snacking and cooking.',
-   'Cashew nuts', 'Everyday snacking and cooking', 229.00, 550.00, 900.00, 120, 4.8, 128, 'assets/cashew-product.png'),
+   'Cashew nuts', 'Everyday snacking and cooking', 229.00, 550.00, 900.00, 120, 4.8, 128, 'assets/natural-cashew-nuts.png'),
   ('Premium Jumbo W180', 'Raw', 'W180',
    'Our largest, plumpest kernels. Sweet, buttery and beautifully uniform.',
    'Cashew nuts', 'Premium snacking and gifting', 299.00, 400.00, 750.00, 40, 4.9, 84, 'assets/cashew-product.png'),
@@ -15,7 +15,7 @@ VALUES
    'Cashew nuts, sea salt', 'Savoury snacking', 269.00, 600.00, 950.00, 8, 4.7, 96, 'assets/w240-cashews.png'),
   ('Pepper Masala', 'Flavoured', 'W320',
    'Roasted cashews tossed in Kerala black pepper and house masala.',
-   'Cashew nuts, black pepper, spices', 'A spicy teatime snack', 279.00, 550.00, 900.00, 60, 4.8, 51, 'assets/cashew-product.png'),
+   'Cashew nuts, black pepper, spices', 'A spicy teatime snack', 279.00, 550.00, 900.00, 60, 4.8, 51, 'assets/natural-cashew-nuts.png'),
   ('Cashew Pieces', 'Raw', 'Broken',
    'Broken kernels at a friendly price, perfect for sweets, gravies and baking.',
    'Cashew nuts', 'Sweets, gravies and baking', 179.00, 340.00, 660.00, 200, 4.6, 73, 'assets/cashew-product.png'),

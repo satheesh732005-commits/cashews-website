@@ -1,10 +1,10 @@
 "use strict";
 
 const LOCAL_PRODUCTS = [
-  { id: "w320-whole", name: "Whole Cashew W320", category: "Raw", grade: "W320", prices: { "250 g": 229, "500 g": 550, "1 kg": 900 }, stock: 120, rating: 4.8, reviews: 128, description: "Creamy, naturally sweet whole kernels, hand graded for an everyday premium snack." },
+  { id: "w320-whole", name: "Whole Cashew W320", category: "Raw", grade: "W320", prices: { "250 g": 229, "500 g": 550, "1 kg": 900 }, stock: 120, rating: 4.8, reviews: 128, description: "Creamy, naturally sweet whole kernels, hand graded for an everyday premium snack.", image_url: "assets/natural-cashew-nuts.png" },
   { id: "w180-jumbo", name: "Premium Jumbo W180", category: "Raw", grade: "W180", prices: { "250 g": 299, "500 g": 400, "1 kg": 750 }, stock: 40, rating: 4.9, reviews: 84, description: "Our show-stopping jumbo kernels: exceptionally large, delicate and buttery." },
   { id: "roasted-salted", name: "Roasted Salted", category: "Roasted", grade: "W240", prices: { "250 g": 269, "500 g": 600, "1 kg": 950 }, stock: 8, rating: 4.7, reviews: 96, description: "Gently roasted for a warm crunch and finished with just a pinch of salt." },
-  { id: "pepper-masala", name: "Pepper Masala", category: "Flavoured", grade: "W320", prices: { "250 g": 279, "500 g": 550, "1 kg": 900 }, stock: 60, rating: 4.8, reviews: 51, description: "A lively South Indian pepper masala coating meets a crisp, roasted cashew." },
+  { id: "pepper-masala", name: "Pepper Masala", category: "Flavoured", grade: "W320", prices: { "250 g": 279, "500 g": 550, "1 kg": 900 }, stock: 60, rating: 4.8, reviews: 51, description: "A lively South Indian pepper masala coating meets a crisp, roasted cashew.", image_url: "assets/natural-cashew-nuts.png" },
   { id: "cashew-pieces", name: "Cashew Pieces", category: "Raw", grade: "Broken", prices: { "250 g": 179, "500 g": 340, "1 kg": 660 }, stock: 200, rating: 4.6, reviews: 73, description: "Fresh, creamy cashew pieces ready for payasam, baking, curries and cooking." },
   { id: "festive-gift-box", name: "Festive Gift Box", category: "Gift", grade: "W240", prices: { "250 g": 399, "500 g": 600, "1 kg": 950 }, stock: 0, rating: 4.9, reviews: 32, description: "A thoughtful gift, beautifully packed with a selection of our finest cashews." }
 ];
@@ -65,7 +65,7 @@ function formatCategory(category) {
 function productImage(product) {
   const visual = String(product.category || "").toLowerCase();
   const altText = `${product.name} cashews`;
-  return `<img src="assets/cashew-product.png" alt="${safe(altText)}" data-category="${safe(visual)}" loading="lazy">`;
+  return `<img src="${safe(product.image_url || "assets/cashew-product.png")}" alt="${safe(altText)}" data-category="${safe(visual)}" loading="lazy">`;
 }
 
 function firstPackPrice(product) {
@@ -253,7 +253,7 @@ function renderCart() {
   const rows = cart.map(item => {
     const product = getProduct(item.productId);
     if (!product) return "";
-    return `<article class="cart-row"><img src="assets/cashew-product.png" alt="${safe(product.name)}"><div><h3>${safe(product.name)}</h3><p>${safe(item.pack)} · ${money(priceFor(product, item.pack))} each</p></div><div class="qty-control" aria-label="Quantity for ${safe(product.name)}"><button type="button" data-qty="${safe(item.key)}" data-change="-1" aria-label="Decrease quantity">−</button><span>${item.quantity}</span><button type="button" data-qty="${safe(item.key)}" data-change="1" aria-label="Increase quantity">+</button></div><strong class="cart-price">${money(priceFor(product, item.pack) * item.quantity)}</strong><button type="button" class="text-button" data-remove="${safe(item.key)}">Remove</button></article>`;
+    return `<article class="cart-row"><img src="${safe(product.image_url || "assets/cashew-product.png")}" alt="${safe(product.name)}"><div><h3>${safe(product.name)}</h3><p>${safe(item.pack)} · ${money(priceFor(product, item.pack))} each</p></div><div class="qty-control" aria-label="Quantity for ${safe(product.name)}"><button type="button" data-qty="${safe(item.key)}" data-change="-1" aria-label="Decrease quantity">−</button><span>${item.quantity}</span><button type="button" data-qty="${safe(item.key)}" data-change="1" aria-label="Increase quantity">+</button></div><strong class="cart-price">${money(priceFor(product, item.pack) * item.quantity)}</strong><button type="button" class="text-button" data-remove="${safe(item.key)}">Remove</button></article>`;
   }).join("");
   return `<div class="page-enter"><section class="section"><div class="wrap"><div class="section-heading"><div><span class="eyebrow">Almost yours</span><h1>Your basket</h1></div><a class="text-button" href="#/shop">Keep shopping</a></div><div class="cart-layout"><div>${rows}</div>${renderSummary()}</div></div></section></div>`;
 }

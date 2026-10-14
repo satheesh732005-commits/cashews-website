@@ -24,9 +24,19 @@ def create_app():
     app.config.from_object(Config)
     CORS(
         app,
-        resources={r"/api/*": {"origins": ["http://127.0.0.1:5500", "http://localhost:5500"]}},
+        resources={
+            r"/api/*": {
+                "origins": [
+                    "null",
+                    "http://127.0.0.1:5500",
+                    "http://localhost:5500",
+                    "http://127.0.0.1:5000",
+                    "http://localhost:5000",
+                ]
+            }
+        },
         allow_headers=["Content-Type", "Authorization", "ADMIN_KEY"],
-        methods=["GET", "POST", "PUT", "OPTIONS"],
+        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     )
     jwt.init_app(app)
     app.register_blueprint(auth_bp)
@@ -34,6 +44,18 @@ def create_app():
     app.register_blueprint(cart_bp)
     app.register_blueprint(orders_bp)
     app.register_blueprint(newsletter_bp)
+    app.add_url_rule(
+        "/api/register",
+        endpoint="register_compat",
+        view_func=app.view_functions["auth.register"],
+        methods=["POST"],
+    )
+    app.add_url_rule(
+        "/api/login",
+        endpoint="login_compat",
+        view_func=app.view_functions["auth.login"],
+        methods=["POST"],
+    )
 
     @app.errorhandler(ValidationError)
     def handle_validation_error(error):
@@ -71,4 +93,4 @@ app = create_app()
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=app.config.get("DEBUG", False))
+    app.run(host="127.0.0.1", port=5000, debug=app.config.get("DEBUG", False))
